@@ -4,8 +4,8 @@ from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import Command
 
 # Token va Kanal ID raqamini o'zingiznikiga moslab yozasiz
-TOKEN = "SIZNING_BOT_TOKENINGIZ"
-CHANNEL_ID = -1001234567890  # Kanal ID raqami (odatda -100 bilan boshlanadi)
+TOKEN = "8869424579:AAGblPU6D0i7tu08RgE9FW3KqRZ2VUsmvdU"
+CHANNEL_ID = -1004354334641  # Kanal ID raqami (odatda -100 bilan boshlanadi)
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
