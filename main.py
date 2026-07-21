@@ -21,9 +21,8 @@ async def cmd_start(message: types.Message):
 @dp.message(F.text)
 async def send_video_from_channel(message: types.Message):
     if message.text.isdigit():
-        # Agar kanal va yuborilgan raqam orasida farq bo'lsa, 
-        # shu yerdagi +2 ni -2 ga o'zgartirishingiz yoki olib tashlashingiz mumkin
-        video_message_id = int(message.text) + 2
+        # Shuyerdagi + 2 ni o'chirib tashlaysiz:
+        video_message_id = int(message.text)
         
         try:
             await bot.copy_message(
