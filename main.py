@@ -23,8 +23,9 @@ async def cmd_start(message: types.Message):
 @dp.message(F.text)
 async def send_video_from_channel(message: types.Message):
     if message.text.isdigit():
-        video_message_id = int(message.text)
-
+        # Farq nechta bo'lsa, shuncha qo'shasiz yoki ayirasiz
+        video_message_id = int(message.text) + 2  # yoki - 2
+        
         try:
             await bot.copy_message(
                 chat_id=message.chat.id,
@@ -33,9 +34,6 @@ async def send_video_from_channel(message: types.Message):
             )
         except Exception as e:
             await message.answer("❌ Bunday raqamli video topilmadi yoki xatolik yuz berdi.")
-    else:
-        await message.answer("Iltimos, videoning raqamini (masalan: `1`) yuboring.")
-
 
 async def main():
     print("Bot ishga tushdi va kanaldan o'qishga tayyor!")
