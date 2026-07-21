@@ -3,13 +3,12 @@ import logging
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import Command
 
-TOKEN = "8869424579:AAGblPU6D0i7tu08RgE9FW3KqRZ2VUsmvdU"
-CHANNEL_ID = -1004354334641
+# Token va Kanal ID raqamini o'zingiznikiga moslab yozasiz
+TOKEN = "SIZNING_BOT_TOKENINGIZ"
+CHANNEL_ID = -1001234567890  # Kanal ID raqami (odatda -100 bilan boshlanadi)
 
-logging.basicConfig(level=logging.INFO)
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
-
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
@@ -19,12 +18,12 @@ async def cmd_start(message: types.Message):
         "men kanaldan o'sha videoni topib yuboraman."
     )
 
-
 @dp.message(F.text)
 async def send_video_from_channel(message: types.Message):
     if message.text.isdigit():
-        # Farq nechta bo'lsa, shuncha qo'shasiz yoki ayirasiz
-        video_message_id = int(message.text) + 2  # yoki - 2
+        # Agar kanal va yuborilgan raqam orasida farq bo'lsa, 
+        # shu yerdagi +2 ni -2 ga o'zgartirishingiz yoki olib tashlashingiz mumkin
+        video_message_id = int(message.text) + 2
         
         try:
             await bot.copy_message(
@@ -36,12 +35,8 @@ async def send_video_from_channel(message: types.Message):
             await message.answer("❌ Bunday raqamli video topilmadi yoki xatolik yuz berdi.")
 
 async def main():
-    print("Bot ishga tushdi va kanaldan o'qishga tayyor!")
     await dp.start_polling(bot)
 
-
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("Bot to'xtatildi!")
+    logging.basicConfig(level=logging.INFO)
+    asyncio.run(main())
