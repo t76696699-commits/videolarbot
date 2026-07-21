@@ -18,11 +18,12 @@ async def cmd_start(message: types.Message):
         "men kanaldan o'sha videoni topib yuboraman."
     )
 
+
 @dp.message(F.text)
 async def send_video_from_channel(message: types.Message):
     if message.text.isdigit():
-        # Shuyerdagi + 2 ni o'chirib tashlaysiz:
-        video_message_id = int(message.text)
+        # Raqamni to'g'rilash uchun - 2 ni qo'shamiz
+        video_message_id = int(message.text) - 2
         
         try:
             await bot.copy_message(
@@ -32,9 +33,9 @@ async def send_video_from_channel(message: types.Message):
             )
         except Exception as e:
             await message.answer("❌ Bunday raqamli video topilmadi yoki xatolik yuz berdi.")
-
 async def main():
     await dp.start_polling(bot)
+
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
