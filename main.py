@@ -7,13 +7,12 @@ TOKEN = "8869424579:AAFXBEb6eSQa8NY1OxwdtWUlr63FUrxL8pY"
 CHANNEL_ID = -1004354334641
 
 
-ot = Bot(token=TOKEN)
+bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
-# Har bir "Kod" va kanalning real xabar ID raqamini shu yerga to'g'ridan-to'g'ri yozib chiqamiz
 VIDEO_MAPPING = {
-    1: 9,   # Kod: 1 uchun kanalning xabar ID raqami
-    4: 12,  # Kod: 4 uchun kanalning xabar ID raqami
+    1: 9,
+    4: 12,
     5: 13,
     6: 14,
     7: 15,
@@ -21,8 +20,6 @@ VIDEO_MAPPING = {
     10: 18,
     14: 22,
     15: 23,
-    # Qolgan kodlarni ham shunday ko'rinishda davom ettirib yozib qo'yasiz:
-    # Kod : Telegram_Xabar_ID
 }
 
 @dp.message(Command("start"))
@@ -38,7 +35,6 @@ async def send_video_from_channel(message: types.Message):
     if message.text.isdigit():
         code = int(message.text)
         
-        # Agar kiritilgan kod lug'atda bo'lsa, uning real ID raqamini olamiz
         if code in VIDEO_MAPPING:
             video_message_id = VIDEO_MAPPING[code]
         else:
