@@ -3,7 +3,7 @@ import logging
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import Command
 
-TOKEN = "8869424579:AAGblPU6D0i7tu08RgE9FW3KqRZ2VUsmvdU"
+TOKEN = "8869424579:AAFXBEb6eSQa8NY1OxwdtWUlr63FUrxL8pY"
 CHANNEL_ID = -1004354334641
 
 
