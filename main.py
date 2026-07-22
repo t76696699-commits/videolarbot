@@ -12,14 +12,18 @@ dp = Dispatcher()
 
 VIDEO_MAPPING = {
     1: 9,
-    4: 12,
-    5: 13,
-    6: 14,
-    7: 15,
-    8: 16,
-    10: 18,
-    14: 22,
-    15: 23,
+    4: 10,
+    5: 11,
+    6: 12,
+    7: 13,
+    8: 14,
+    10: 16,
+    12: 18,
+    13: 19,
+    14: 20,
+    16: 22,
+    17: 23,
+    # Qolgan kodlaringizni ham xuddi shu tartibda (Kod: Telegram_ID) ko'rinishida qo'shib qo'yasiz
 }
 
 @dp.message(Command("start"))
