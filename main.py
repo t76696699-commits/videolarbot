@@ -6,7 +6,7 @@ from aiogram.filters import Command
 TOKEN = "8869424579:AAGblPU6D0i7tu08RgE9FW3KqRZ2VUsmvdU"
 CHANNEL_ID = -1004354334641
 
-logging.basicConfig(level=logging.INFO)
+
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
@@ -23,9 +23,9 @@ async def cmd_start(message: types.Message):
 @dp.message(F.text)
 async def send_video_from_channel(message: types.Message):
     if message.text.isdigit():
-        # Farq aniq 6 taga teng bo'lgani uchun - 6 ni yozamiz
+        # Kanaldagi kod va xabar ID farqi 6 taga teng bo'lgani uchun - 6 yozamiz
         video_message_id = int(message.text) - 6
-
+        
         try:
             await bot.copy_message(
                 chat_id=message.chat.id,
