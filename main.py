@@ -3,12 +3,13 @@ import logging
 from aiogram import Bot, Dispatcher, F, types
 from aiogram.filters import Command
 
-# Token va Kanal ID raqamini o'zingiznikiga moslab yozasiz
 TOKEN = "8869424579:AAGblPU6D0i7tu08RgE9FW3KqRZ2VUsmvdU"
-CHANNEL_ID = -1004354334641  # Kanal ID raqami (odatda -100 bilan boshlanadi)
+CHANNEL_ID = -1004354334641
 
+logging.basicConfig(level=logging.INFO)
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
+
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
@@ -22,9 +23,8 @@ async def cmd_start(message: types.Message):
 @dp.message(F.text)
 async def send_video_from_channel(message: types.Message):
     if message.text.isdigit():
-        # Kanaldagi Kod va Telegram ID farqi 4 taga teng bo'lgani uchun - 4 yozamiz
-        video_message_id = int(message.text) - 4
-        
+        video_message_id = int(message.text) + 2  # yoki - 2
+
         try:
             await bot.copy_message(
                 chat_id=message.chat.id,
@@ -36,8 +36,12 @@ async def send_video_from_channel(message: types.Message):
 
 
 async def main():
+    print("Bot ishga tushdi va kanaldan o'qishga tayyor!")
     await dp.start_polling(bot)
 
+
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("Bot to'xtatildi!")
