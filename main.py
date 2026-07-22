@@ -23,7 +23,8 @@ async def cmd_start(message: types.Message):
 @dp.message(F.text)
 async def send_video_from_channel(message: types.Message):
     if message.text.isdigit():
-        video_message_id = int(message.text) + 2  # yoki - 2
+        # Farq aniq 6 taga teng bo'lgani uchun - 6 ni yozamiz
+        video_message_id = int(message.text) - 6
 
         try:
             await bot.copy_message(
@@ -36,12 +37,9 @@ async def send_video_from_channel(message: types.Message):
 
 
 async def main():
-    print("Bot ishga tushdi va kanaldan o'qishga tayyor!")
     await dp.start_polling(bot)
 
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("Bot to'xtatildi!")
+    logging.basicConfig(level=logging.INFO)
+    asyncio.run(main())
