@@ -6,25 +6,8 @@ from aiogram.filters import Command
 TOKEN = "8869424579:AAFXBEb6eSQa8NY1OxwdtWUlr63FUrxL8pY"
 CHANNEL_ID = -1004354334641
 
-
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
-
-VIDEO_MAPPING = {
-    1: 9,
-    4: 10,
-    5: 11,
-    6: 12,
-    7: 13,
-    8: 14,
-    10: 16,
-    12: 18,
-    13: 19,
-    14: 20,
-    16: 22,
-    17: 23,
-    # Qolgan kodlaringizni ham xuddi shu tartibda (Kod: Telegram_ID) ko'rinishida qo'shib qo'yasiz
-}
 
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
@@ -39,11 +22,8 @@ async def send_video_from_channel(message: types.Message):
     if message.text.isdigit():
         code = int(message.text)
         
-        if code in VIDEO_MAPPING:
-            video_message_id = VIDEO_MAPPING[code]
-        else:
-            await message.answer("❌ Bunday raqamli video topilmadi.")
-            return
+        # Kod va kanal xabar ID raqamidagi doimiy farqni qo'shamiz
+        video_message_id = code + 8
         
         try:
             await bot.copy_message(
@@ -52,7 +32,7 @@ async def send_video_from_channel(message: types.Message):
                 message_id=video_message_id
             )
         except Exception as e:
-            await message.answer("❌ Video topilmadi yoki xatolik yuz berdi.")
+            await message.answer("❌ Bunday raqamli video topilmadi yoki xatolik yuz berdi.")
 
 async def main():
     await dp.start_polling(bot)
