@@ -23,8 +23,8 @@ async def cmd_start(message: types.Message):
 @dp.message(F.text)
 async def send_video_from_channel(message: types.Message):
     if message.text.isdigit():
-        # Kanaldagi kod va xabar ID farqi 6 taga teng bo'lgani uchun - 6 yozamiz
-        video_message_id = int(message.text) - 6
+        # Farq 8 taga teng bo'lgani uchun - 8 yozamiz
+        video_message_id = int(message.text) - 8
         
         try:
             await bot.copy_message(
